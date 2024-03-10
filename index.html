@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drag & Drop API</title>
+
+    <link rel="stylesheet" href="styles.css" />
+    <script src="drag.js" defer></script>
+    <script src="todo.js" defer></script>
+    <script src="modal.js" defer></script>
+    <script src="details.js" defer></script>
+</head>
+
+<body>
+    <div class="board">
+        <form id="todo-form">
+            <input type="text" placeholder="New TODO..." id="todo-input" />
+            <button type="submit">Add +</button>
+        </form>
+
+        <div class="lanes">
+            <div class="swim-lane" id="todo-lane">
+                <h3 class="heading">TODO</h3>
+                <!-- Updated: Added count for TODO -->
+                <span id="todo-count" class="count"></span>
+                <button onclick="openNewTaskModal('todo')">New</button>
+                <p class="task" draggable="true" data-description="Buy groceries" onclick="openTaskDetailsModal(this)">Buy groceries</p>
+                <p class="task" draggable="true" data-description="Feed the dogs" onclick="openTaskDetailsModal(this)">Feed the dogs</p>
+                <p class="task" draggable="true" data-description="Mow the lawn" onclick="openTaskDetailsModal(this)">Mow the lawn</p>
+            </div>
+
+            <div class="swim-lane" id="doing-lane">
+                <h3 class="heading">Doing</h3>
+                <!-- Updated: Added count for Doing -->
+                <span id="doing-count" class="count"></span>
+                <button onclick="openNewTaskModal('doing')">New</button>
+                <p class="task" draggable="true" data-description="Binge 80 hours of Game of Thrones" onclick="openTaskDetailsModal(this)">Binge 80 hours of Game of Thrones</p>
+            </div>
+
+            <div class="swim-lane" id="done-lane">
+                <h3 class="heading">Done</h3>
+                <!-- Updated: Added count for Done -->
+                <span id="done-count" class="count"></span>
+                <button onclick="openNewTaskModal('done')">New</button>
+                <p class="task" draggable="true" data-description="Watch video of a man raising a grocery store lobster as a pet" onclick="openTaskDetailsModal(this)">Watch video of a man raising a grocery store lobster as a pet</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Task Details -->
+    <div id="taskDetailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeTaskDetailsModal()">&times;</span>
+            <label for="taskTitle">Title:</label>
+            <input type="text" id="taskTitleDetails" disabled>
+            <label for="taskDescription">Description:</label>
+            <textarea id="taskDescriptionDetails" disabled></textarea>
+            <label for="taskStatus">Status:</label>
+            <select id="taskStatusDetails" disabled>
+                <option value="todo">TODO</option>
+                <option value="doing">Doing</option>
+                <option value="done">Done</option>
+            </select>
+            <!-- Updated: Added "Delete" button -->
+            <button onclick="deleteTask()">Delete</button>
+        </div>
+    </div>
+
+    <!-- Modal for New Task -->
+    <div id="newTaskModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeNewTaskModal()">&times;</span>
+            <label for="newTaskTitle">Title:</label>
+            <input type="text" id="newTaskTitle">
+            <label for="newTaskDescription">Description:</label>
+            <textarea id="newTaskDescription"></textarea>
+            <button onclick="saveNewTask()">Save</button>
+        </div>
+    </div>
+
+    <script src="modal.js" defer></script>
+    <script src="details.js" defer></script>
+    <script src="drag.js" defer></script>
+    <script src="todo.js" defer></script>
+</body>
+
+</html>
